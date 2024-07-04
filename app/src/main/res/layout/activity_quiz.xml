@@ -7,6 +7,4 @@
     android:gravity="center"
     tools:context=".QuizActivity">
 
-    <!-- Add quiz related UI elements here -->
-
 </LinearLayout>

@@ -7,6 +7,4 @@
     android:gravity="center"
     tools:context=".SettingsActivity">
 
-    <!-- Add settings related UI elements here -->
-
 </LinearLayout>
