@@ -4,7 +4,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:padding="16dp"
+    android:background="@drawable/backgroundsettings"
     tools:context=".SettingsActivity">
+
+    <Switch
+        android:id="@+id/soundSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sound"
+        android:minWidth="48dp"
+        android:minHeight="48dp"/>
+
+
+    <RadioGroup
+        android:id="@+id/difficultyRadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp">
+
+        <RadioButton
+            android:id="@+id/easyRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Easy"
+            android:minWidth="48dp"
+            android:minHeight="48dp"/>
+
+        <RadioButton
+            android:id="@+id/mediumRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medium"
+            android:minWidth="48dp"
+            android:minHeight="48dp"/>
+
+        <RadioButton
+            android:id="@+id/hardRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hard"
+            android:minWidth="48dp"
+            android:minHeight="48dp"/>
+
+    </RadioGroup>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go to Home Screen"
+        android:onClick="goToHomeScreen"
+        tools:ignore="OnClick" />
 
 </LinearLayout>

@@ -6,19 +6,23 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="16dp"
+    android:background="@drawable/background"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/startQuizButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start Quiz" />
+        android:textColor="@color/black"
+        android:text="Start Quiz"/>
 
     <Button
         android:id="@+id/viewHighScoresButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View High Scores" />
+        android:text="View High Scores"
+        android:textColor="@color/black"
+        android:layout_marginTop="16dp"/>
 
     <Button
         android:id="@+id/settingsButton"
@@ -26,6 +30,8 @@
         android:layout_height="50dp"
         android:background="@drawable/settingsbutton"
         android:layout_marginStart="150dp"
-        android:layout_marginTop="-390dp"/>
+        android:layout_marginTop="-390dp"
+        android:contentDescription="Settings"/>
+
 
 </LinearLayout>

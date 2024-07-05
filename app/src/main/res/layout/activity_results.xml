@@ -3,26 +3,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/backgroundscore"
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/highScoresTextView"
+        android:id="@+id/scoreTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="High Scores"
-        android:textColor="@color/white"
         android:textSize="24sp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="32dp"/>
 
-    <!-- ListView pentru afișarea scorurilor înalte, dacă este necesar -->
+    <Button
+        android:id="@+id/replayButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Replay Quiz"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"/>
 
     <Button
         android:id="@+id/homeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Go to Home Screen"
-        android:layout_gravity="center_horizontal"
-        android:onClick="goToHomeScreen"/>
+        android:layout_gravity="center_horizontal"/>
+
 </LinearLayout>

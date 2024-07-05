@@ -6,11 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
-
-import com.example.quiz_test.HighScoresActivity;
-import com.example.quiz_test.QuizActivity;
-import com.example.quiz_test.SettingsActivity;
-
 public class MainActivity extends AppCompatActivity {
 
     private Button startQuizButton;
