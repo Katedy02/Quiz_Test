@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="High Scores"
         android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textSize="40sp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="32dp"/>
 

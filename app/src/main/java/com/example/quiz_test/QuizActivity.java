@@ -1,6 +1,7 @@
 package com.example.quiz_test;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -37,6 +38,7 @@ public class QuizActivity extends AppCompatActivity {
 
     private int currentQuestionIndex = 0;
     private int score = 0;
+    private boolean soundEnabled;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,10 @@ public class QuizActivity extends AppCompatActivity {
         answer4RadioButton = findViewById(R.id.answer4RadioButton);
         submitButton = findViewById(R.id.submitButton);
         progressTextView = findViewById(R.id.progressTextView);
+
+        // Citim setările pentru sunet
+        SharedPreferences preferences = getSharedPreferences("QuizSettings", MODE_PRIVATE);
+        soundEnabled = preferences.getBoolean("sound", true);
 
         loadQuestions();
         displayQuestion();
@@ -128,7 +134,6 @@ public class QuizActivity extends AppCompatActivity {
 
     private void checkAnswer() {
         int selectedAnswerIndex = answersRadioGroup.indexOfChild(findViewById(answersRadioGroup.getCheckedRadioButtonId()));
-        boolean soundEnabled = true; // Schimbă aceasta variabilă pentru a verifica dacă sunetul este activat din setări
 
         if (selectedAnswerIndex == correctAnswers[currentQuestionIndex]) {
             score += 10;

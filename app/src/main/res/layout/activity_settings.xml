@@ -51,10 +51,11 @@
     </RadioGroup>
 
     <Button
+        android:id="@+id/homeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Go to Home Screen"
-        android:onClick="goToHomeScreen"
-        tools:ignore="OnClick" />
+        android:layout_gravity="center_horizontal"/>
+
 
 </LinearLayout>

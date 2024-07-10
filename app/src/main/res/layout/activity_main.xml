@@ -13,16 +13,19 @@
         android:id="@+id/startQuizButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text="Start Quiz"/>
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="390dp"
+        android:text="Start Quiz"
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/viewHighScoresButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="-47dp"
+        android:layout_marginStart="-100dp"
         android:text="View High Scores"
-        android:textColor="@color/black"
-        android:layout_marginTop="16dp"/>
+        android:textColor="@color/black"/>
 
     <Button
         android:id="@+id/settingsButton"
@@ -30,8 +33,7 @@
         android:layout_height="50dp"
         android:background="@drawable/settingsbutton"
         android:layout_marginStart="150dp"
-        android:layout_marginTop="-390dp"
+        android:layout_marginTop="-560dp"
         android:contentDescription="Settings"/>
-
 
 </LinearLayout>
