@@ -1,44 +1,88 @@
 package com.example.quiz_test;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
+import android.view.View;
+import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SettingsActivity extends AppCompatActivity {
-
-    private Switch soundSwitch;
     private RadioGroup difficultyRadioGroup;
-    private SharedPreferences preferences;
+    private Switch soundSwitch;
+    private Button homeButton;
+    private MediaPlayer correctSoundPlayer;
+    private MediaPlayer incorrectSoundPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        soundSwitch = findViewById(R.id.soundSwitch);
         difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup);
-        preferences = getSharedPreferences("QuizSettings", MODE_PRIVATE);
+        soundSwitch = findViewById(R.id.soundSwitch);
+        homeButton = findViewById(R.id.homeButton);
+        correctSoundPlayer = MediaPlayer.create(this, R.raw.correct);
+        incorrectSoundPlayer = MediaPlayer.create(this, R.raw.incorrect);
 
-        soundSwitch.setChecked(preferences.getBoolean("sound", true));
+        SharedPreferences preferences = getSharedPreferences("QuizSettings", MODE_PRIVATE);
         int difficulty = preferences.getInt("difficulty", R.id.easyRadioButton);
-        difficultyRadioGroup.check(difficulty);
+        boolean sound = preferences.getBoolean("sound", true);
 
-        soundSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                preferences.edit().putBoolean("sound", isChecked).apply();
-            }
+
+
+        difficultyRadioGroup.check(difficulty);
+        soundSwitch.setChecked(sound);
+
+        difficultyRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putInt("difficulty", checkedId);
+            editor.apply();
         });
 
-        difficultyRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                preferences.edit().putInt("difficulty", checkedId).apply();
-            }
+        soundSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("sound", isChecked);
+            editor.apply();
+        });
+
+        homeButton.setOnClickListener(view -> {
+            Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+            startActivity(intent);
         });
     }
+    // Method to play correct sound
+    private void playCorrectSound() {
+        if (soundSwitch.isChecked() && correctSoundPlayer != null) {
+            correctSoundPlayer.start();
+        }
+    }
+
+    // Method to play incorrect sound
+    private void playIncorrectSound() {
+        if (soundSwitch.isChecked() && incorrectSoundPlayer != null) {
+            incorrectSoundPlayer.start();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        // Release media players
+        if (correctSoundPlayer != null) {
+            correctSoundPlayer.release();
+            correctSoundPlayer = null;
+        }
+        if (incorrectSoundPlayer != null) {
+            incorrectSoundPlayer.release();
+            incorrectSoundPlayer = null;
+        }
+        super.onDestroy();
+    }
 }
+
+

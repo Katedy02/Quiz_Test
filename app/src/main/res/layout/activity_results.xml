@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/backgroudresult"
     android:padding="16dp">
 
     <TextView
@@ -11,7 +12,8 @@
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="32dp"/>
+        android:layout_marginTop="400dp"
+        android:textColor="@color/black"/>
 
     <Button
         android:id="@+id/replayButton"
@@ -19,13 +21,22 @@
         android:layout_height="wrap_content"
         android:text="Replay Quiz"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="105dp"
+        android:textColor="@color/black"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:padding="12dp"/>
 
     <Button
         android:id="@+id/homeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="56dp"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:padding="12dp"
         android:text="Go to Home Screen"
-        android:layout_gravity="center_horizontal"/>
+        android:textColor="@color/black" />
 
 </LinearLayout>

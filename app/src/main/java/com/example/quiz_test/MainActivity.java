@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         startQuizButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, QuizActivity.class);
+                Intent intent = new Intent(MainActivity.this, SetupQuizActivity.class);
                 startActivity(intent);
             }
         });
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         viewHighScoresButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Navigate to HighScoresActivity
                 Intent intent = new Intent(MainActivity.this, HighScoresActivity.class);
                 startActivity(intent);
             }
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Navigate to SettingsActivity
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
             }

@@ -1,0 +1,52 @@
+[
+  {
+    "question": "Care este capitala Franței?",
+    "answers": ["Paris", "Londra", "Berlin", "Madrid"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "Cât este 2 + 2?",
+    "answers": ["3", "4", "5", "6"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Cine a scris 'Romeo și Julieta'?",
+    "answers": ["Charles Dickens", "Jane Austen", "William Shakespeare", "Mark Twain"],
+    "correctAnswer": 2
+  },
+  {
+    "question": "Care este cea mai mare planetă din sistemul solar?",
+    "answers": ["Marte", "Pământ", "Jupiter", "Saturn"],
+    "correctAnswer": 2
+  },
+  {
+    "question": "Câte continente sunt pe Pământ?",
+    "answers": ["5", "6", "7", "8"],
+    "correctAnswer": 2
+  },
+  {
+    "question": "Care este cel mai mare ocean de pe Pământ?",
+    "answers": ["Oceanul Atlantic", "Oceanul Indian", "Oceanul Arctic", "Oceanul Pacific"],
+    "correctAnswer": 3
+  },
+  {
+    "question": "Cine a pictat Mona Lisa?",
+    "answers": ["Vincent van Gogh", "Leonardo da Vinci", "Pablo Picasso", "Claude Monet"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Ce țară este cunoscută pentru Turnul Eiffel?",
+    "answers": ["Spania", "Italia", "Franța", "Germania"],
+    "correctAnswer": 2
+  },
+  {
+    "question": "Cine este autorul seriei de cărți Harry Potter?",
+    "answers": ["J.K. Rowling", "J.R.R. Tolkien", "George R.R. Martin", "Stephen King"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "Care este cea mai mică țară din lume?",
+    "answers": ["Monaco", "Nauru", "Vatican", "San Marino"],
+    "correctAnswer": 2
+  }
+]

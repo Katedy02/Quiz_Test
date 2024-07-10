@@ -1,0 +1,52 @@
+[
+  {
+    "question": "Cine a descoperit America?",
+    "answers": ["Christopher Columbus", "Marco Polo", "Ferdinand Magellan", "James Cook"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "Care este cel mai mare mamifer terestru?",
+    "answers": ["Elefantul african", "Rinocerul alb", "Hipopotamul", "Girafa"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "Cine a inventat telefonul?",
+    "answers": ["Alexander Graham Bell", "Thomas Edison", "Nikola Tesla", "Guglielmo Marconi"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "Câte state are SUA?",
+    "answers": ["50", "48", "52", "51"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "Care este formula chimică a apei?",
+    "answers": ["H2O", "CO2", "O2", "N2"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "Cine a scris 'Odiseea'?",
+    "answers": ["Homer", "Vergiliu", "Ovidiu", "Sofocle"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "Ce este botulismul?",
+    "answers": ["O boală infecțioasă", "Un tip de insectă", "O specie de pește", "O substanță chimică"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "Care este cea mai mare insulă din lume?",
+    "answers": ["Groenlanda", "Madagascar", "Australia", "Islanda"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "Cine a inventat becul electric?",
+    "answers": ["Thomas Edison", "Alexander Graham Bell", "Nikola Tesla", "Benjamin Franklin"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "Ce gaz este esențial pentru respirație?",
+    "answers": ["Oxigen", "Azot", "Dioxid de carbon", "Hidrogen"],
+    "correctAnswer": 0
+  }
+]

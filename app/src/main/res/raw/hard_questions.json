@@ -1,0 +1,52 @@
+[
+  {
+    "question": "Cine a compus Simfonia a 9-a?",
+    "answers": ["Ludwig van Beethoven", "Wolfgang Amadeus Mozart", "Johann Sebastian Bach", "Franz Schubert"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "Ce este de Broglie?",
+    "answers": ["Un fizician francez", "O specie de fluture", "Un tip de mineral", "O constelație"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "Care este capitala Mongoliei?",
+    "answers": ["Ulaanbaatar", "Astana", "Tbilisi", "Baku"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "Cine a scris 'Divina Comedie'?",
+    "answers": ["Dante Alighieri", "Geoffrey Chaucer", "John Milton", "Homer"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "Cine a descoperit penicilina?",
+    "answers": ["Alexander Fleming", "Louis Pasteur", "Robert Koch", "Edward Jenner"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "Câte cromozomi are un om?",
+    "answers": ["46", "23", "44", "48"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "Ce este Antares?",
+    "answers": ["O stea", "O galaxie", "O planetă", "Un asteroid"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "Cine a pictat 'Noaptea înstelată'?",
+    "answers": ["Vincent van Gogh", "Pablo Picasso", "Claude Monet", "Salvador Dalí"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "Ce element chimic are simbolul 'Fe'?",
+    "answers": ["Fier", "Fluor", "Franciu", "Fermiu"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "Care este cel mai mic os din corpul uman?",
+    "answers": ["Scărița", "Ciocanul", "Timpanul", "Rotula"],
+    "correctAnswer": 0
+  }
+]

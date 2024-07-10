@@ -1,6 +1,7 @@
 package com.example.quiz_test;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,124 +23,121 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class QuizActivity extends AppCompatActivity {
 
-    private String[] questions;
-    private String[][] answers;
-    private int[] correctAnswers;
-    private MediaPlayer correctSound;
-    private MediaPlayer incorrectSound;
     private TextView questionTextView;
     private RadioGroup answersRadioGroup;
-    private RadioButton answer1RadioButton, answer2RadioButton, answer3RadioButton, answer4RadioButton;
     private Button submitButton;
     private TextView progressTextView;
 
+    private List<Question> questionsList;
     private int currentQuestionIndex = 0;
     private int score = 0;
+    private boolean isSoundOn;
+
+    private String playerName;
+    private String difficulty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        // Inițializăm efectele sonore
-        correctSound = MediaPlayer.create(this, R.raw.correct);
-        incorrectSound = MediaPlayer.create(this, R.raw.incorrect);
-
         questionTextView = findViewById(R.id.questionTextView);
         answersRadioGroup = findViewById(R.id.answersRadioGroup);
-        answer1RadioButton = findViewById(R.id.answer1RadioButton);
-        answer2RadioButton = findViewById(R.id.answer2RadioButton);
-        answer3RadioButton = findViewById(R.id.answer3RadioButton);
-        answer4RadioButton = findViewById(R.id.answer4RadioButton);
         submitButton = findViewById(R.id.submitButton);
         progressTextView = findViewById(R.id.progressTextView);
 
-        loadQuestions();
-        displayQuestion();
+        // Get data from the intent
+        Intent intent = getIntent();
+        playerName = intent.getStringExtra("playerName");
+        difficulty = intent.getStringExtra("difficulty");
+        isSoundOn = intent.getBooleanExtra("isSoundOn", true); // Default sound is on
+
+        if (playerName == null || difficulty == null) {
+            Toast.makeText(this, "Player name or difficulty level not provided", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+
+        questionsList = getQuestionsByDifficulty(difficulty);
+        Collections.shuffle(questionsList); // Shuffle questions
+
+        loadNextQuestion();
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 checkAnswer();
-                if (currentQuestionIndex < questions.length - 1) {
-                    currentQuestionIndex++;
-                    displayQuestion();
-                } else {
-                    showResults();
-                }
+                loadNextQuestion();
             }
         });
     }
 
-    private void loadQuestions() {
-        Resources res = getResources();
-        InputStream is = res.openRawResource(R.raw.questions);
-        StringBuilder jsonBuilder = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                jsonBuilder.append(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+    private List<Question> getQuestionsByDifficulty(String difficulty) {
+        List<Question> selectedQuestions = new ArrayList<>();
+        switch (difficulty) {
+            case "easy":
+                selectedQuestions = Question.getEasyQuestions();
+                break;
+            case "medium":
+                selectedQuestions = Question.getMediumQuestions();
+                break;
+            case "hard":
+                selectedQuestions = Question.getHardQuestions();
+                break;
         }
-        String json = jsonBuilder.toString();
-
-        try {
-            JSONArray questionsArray = new JSONArray(json);
-            questions = new String[questionsArray.length()];
-            answers = new String[questionsArray.length()][4];
-            correctAnswers = new int[questionsArray.length()];
-
-            for (int i = 0; i < questionsArray.length(); i++) {
-                JSONObject questionObject = questionsArray.getJSONObject(i);
-                questions[i] = questionObject.getString("question");
-                JSONArray answersArray = questionObject.getJSONArray("answers");
-
-                for (int j = 0; j < answersArray.length(); j++) {
-                    answers[i][j] = answersArray.getString(j);
-                }
-
-                correctAnswers[i] = questionObject.getInt("correctAnswer");
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        return selectedQuestions;
     }
 
-    private void displayQuestion() {
-        questionTextView.setText(questions[currentQuestionIndex]);
-        answer1RadioButton.setText(answers[currentQuestionIndex][0]);
-        answer2RadioButton.setText(answers[currentQuestionIndex][1]);
-        answer3RadioButton.setText(answers[currentQuestionIndex][2]);
-        answer4RadioButton.setText(answers[currentQuestionIndex][3]);
-        answersRadioGroup.clearCheck();
-        progressTextView.setText("Întrebarea " + (currentQuestionIndex + 1) + " din " + questions.length);
-    }
+    private void loadNextQuestion() {
+        if (currentQuestionIndex < questionsList.size()) {
+            Question currentQuestion = questionsList.get(currentQuestionIndex);
+            questionTextView.setText(currentQuestion.getQuestion());
+            answersRadioGroup.removeAllViews();
 
-    private void showResults() {
-        Intent intent = new Intent(QuizActivity.this, ResultsActivity.class);
-        intent.putExtra("score", score);
-        startActivity(intent);
-        finish();
+            for (int i = 0; i < currentQuestion.getAnswers().length; i++) {
+                RadioButton radioButton = new RadioButton(this);
+                radioButton.setText(currentQuestion.getAnswers()[i]);
+                radioButton.setId(i);
+                answersRadioGroup.addView(radioButton);
+            }
+            currentQuestionIndex++;
+            progressTextView.setText("Question: " + currentQuestionIndex + "/" + questionsList.size());
+        } else {
+            endQuiz();
+        }
     }
 
     private void checkAnswer() {
-        int selectedAnswerIndex = answersRadioGroup.indexOfChild(findViewById(answersRadioGroup.getCheckedRadioButtonId()));
-        boolean soundEnabled = true; // Schimbă aceasta variabilă pentru a verifica dacă sunetul este activat din setări
-
-        if (selectedAnswerIndex == correctAnswers[currentQuestionIndex]) {
-            score += 10;
-            if (soundEnabled) {
-                correctSound.start();
-            }
-        } else {
-            if (soundEnabled) {
-                incorrectSound.start();
+        int selectedAnswerId = answersRadioGroup.getCheckedRadioButtonId();
+        if (selectedAnswerId != -1) {
+            Question currentQuestion = questionsList.get(currentQuestionIndex - 1);
+            if (selectedAnswerId == currentQuestion.getCorrectAnswer()) {
+                score += 10; // Score incremented by 10 for correct answer
+                if (isSoundOn) {
+                    MediaPlayer.create(this, R.raw.correct).start();
+                }
+            } else {
+                if (isSoundOn) {
+                    MediaPlayer.create(this, R.raw.incorrect).start();
+                }
             }
         }
     }
+
+    private void endQuiz() {
+        Intent intent = new Intent(QuizActivity.this, ResultsActivity.class);
+        intent.putExtra("score", score);
+        intent.putExtra("playerName", playerName);
+        intent.putExtra("difficulty", difficulty);
+        startActivity(intent);
+        finish();
+    }
 }
+

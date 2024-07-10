@@ -6,23 +6,60 @@
     android:background="@drawable/backgroundscore"
     android:padding="16dp">
 
+    <!-- High Scores pentru nivelul ușor -->
     <TextView
-        android:id="@+id/highScoresTextView"
+        android:id="@+id/easyScoresTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="High Scores"
+        android:text="Easy High Scores"
         android:textColor="@color/white"
         android:textSize="24sp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="32dp"/>
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
 
-    <!-- ListView pentru afișarea scorurilor înalte, dacă este necesar -->
+    <!-- High Scores pentru nivelul mediu -->
+    <ListView
+        android:id="@+id/easyHighScoresListView"
+        android:layout_width="match_parent"
+        android:layout_height="153dp"
+        android:background="@color/transparent"
+        android:divider="@android:color/transparent" />
 
-    <Button
-        android:id="@+id/homeButton"
+    <TextView
+        android:id="@+id/mediumScoresTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Go to Home Screen"
-        android:layout_gravity="center_horizontal"
-        android:onClick="goToHomeScreen"/>
+        android:text="Medium High Scores"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <ListView
+        android:id="@+id/mediumHighScoresListView"
+        android:layout_width="match_parent"
+        android:layout_height="192dp"
+        android:background="@color/transparent"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="8dp" />
+
+    <!-- High Scores pentru nivelul greu -->
+    <TextView
+        android:id="@+id/hardScoresTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hard High Scores"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <ListView
+        android:id="@+id/hardHighScoresListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="8dp"
+        android:background="@color/transparent"/>
+
 </LinearLayout>
