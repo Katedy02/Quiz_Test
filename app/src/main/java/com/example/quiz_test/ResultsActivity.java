@@ -1,5 +1,6 @@
 package com.example.quiz_test;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,7 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ResultsActivity extends AppCompatActivity {
 
@@ -19,9 +22,9 @@ public class ResultsActivity extends AppCompatActivity {
     private Button replayButton;
     private Button homeButton;
 
-    private int score;
     private String playerName;
     private String difficulty;
+    private int score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,84 +35,61 @@ public class ResultsActivity extends AppCompatActivity {
         replayButton = findViewById(R.id.replayButton);
         homeButton = findViewById(R.id.homeButton);
 
+        // Get data from intent
         Intent intent = getIntent();
-        score = intent.getIntExtra("score", 0);
         playerName = intent.getStringExtra("playerName");
         difficulty = intent.getStringExtra("difficulty");
+        score = intent.getIntExtra("score", 0);
 
+        // Display score
         scoreTextView.setText("Score: " + score);
 
-        updateHighScores();
+        // Save score to SharedPreferences
+        saveScore();
 
-        replayButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent replayIntent = new Intent(ResultsActivity.this, SetupQuizActivity.class);
-                startActivity(replayIntent);
-            }
+        replayButton.setOnClickListener(v -> {
+            Intent replayIntent = new Intent(ResultsActivity.this, SetupQuizActivity.class);
+            startActivity(replayIntent);
+            finish();
         });
 
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent homeIntent = new Intent(ResultsActivity.this, MainActivity.class);
-                startActivity(homeIntent);
-            }
+        homeButton.setOnClickListener(v -> {
+            Intent homeIntent = new Intent(ResultsActivity.this, MainActivity.class);
+            startActivity(homeIntent);
+            finish();
         });
     }
 
-    private void updateHighScores() {
-        SharedPreferences sharedPreferences = getSharedPreferences("HighScores", MODE_PRIVATE);
+    private void saveScore() {
+        SharedPreferences sharedPreferences = getSharedPreferences("HighScores", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        String highScoresKey = difficulty + "_high_scores";
-        String highScores = sharedPreferences.getString(highScoresKey, "");
+        // Get existing scores
+        Set<String> scoresSet = sharedPreferences.getStringSet(difficulty, new HashSet<>());
 
-        List<HighScore> highScoreList = new ArrayList<>();
-        if (!highScores.isEmpty()) {
-            String[] scoresArray = highScores.split(",");
-            for (String scoreEntry : scoresArray) {
-                String[] parts = scoreEntry.split(":");
-                highScoreList.add(new HighScore(parts[0], Integer.parseInt(parts[1])));
-            }
+        // Convert set to list
+        List<String> scoresList = new ArrayList<>(scoresSet);
+
+        // Add new score
+        scoresList.add(playerName + ":" + score);
+
+        // Sort list by score in descending order
+        Collections.sort(scoresList, (a, b) -> {
+            int scoreA = Integer.parseInt(a.split(":")[1]);
+            int scoreB = Integer.parseInt(b.split(":")[1]);
+            return Integer.compare(scoreB, scoreA);
+        });
+
+        // Keep only top 10 scores
+        if (scoresList.size() > 5) {
+            scoresList = scoresList.subList(0, 5);
         }
 
-        highScoreList.add(new HighScore(playerName, score));
+        // Convert list back to set
+        scoresSet = new HashSet<>(scoresList);
 
-        Collections.sort(highScoreList);
-        if (highScoreList.size() > 10) {
-            highScoreList = highScoreList.subList(0, 10);
-        }
-
-        StringBuilder newHighScores = new StringBuilder();
-        for (HighScore highScore : highScoreList) {
-            newHighScores.append(highScore.getName()).append(":").append(highScore.getScore()).append(",");
-        }
-
-        editor.putString(highScoresKey, newHighScores.toString());
+        // Save updated scores
+        editor.putStringSet(difficulty, scoresSet);
         editor.apply();
-    }
-
-    private static class HighScore implements Comparable<HighScore> {
-        private String name;
-        private int score;
-
-        public HighScore(String name, int score) {
-            this.name = name;
-            this.score = score;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public int getScore() {
-            return score;
-        }
-
-        @Override
-        public int compareTo(HighScore o) {
-            return Integer.compare(o.score, this.score);
-        }
     }
 }

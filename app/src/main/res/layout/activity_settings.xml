@@ -16,38 +16,7 @@
         android:minWidth="48dp"
         android:minHeight="48dp"/>
 
-    <RadioGroup
-        android:id="@+id/difficultyRadioGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="16dp">
 
-        <RadioButton
-            android:id="@+id/easyRadioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Easy"
-            android:minWidth="48dp"
-            android:minHeight="48dp"/>
-
-        <RadioButton
-            android:id="@+id/mediumRadioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Medium"
-            android:minWidth="48dp"
-            android:minHeight="48dp"/>
-
-        <RadioButton
-            android:id="@+id/hardRadioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hard"
-            android:minWidth="48dp"
-            android:minHeight="48dp"/>
-
-    </RadioGroup>
 
     <Button
         android:id="@+id/homeButton"

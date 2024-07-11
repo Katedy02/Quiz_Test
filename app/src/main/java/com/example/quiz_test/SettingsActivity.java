@@ -13,7 +13,6 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SettingsActivity extends AppCompatActivity {
-    private RadioGroup difficultyRadioGroup;
     private Switch soundSwitch;
     private Button homeButton;
     private MediaPlayer correctSoundPlayer;
@@ -24,26 +23,18 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup);
+
         soundSwitch = findViewById(R.id.soundSwitch);
         homeButton = findViewById(R.id.homeButton);
         correctSoundPlayer = MediaPlayer.create(this, R.raw.correct);
         incorrectSoundPlayer = MediaPlayer.create(this, R.raw.incorrect);
 
         SharedPreferences preferences = getSharedPreferences("QuizSettings", MODE_PRIVATE);
-        int difficulty = preferences.getInt("difficulty", R.id.easyRadioButton);
         boolean sound = preferences.getBoolean("sound", true);
 
 
-
-        difficultyRadioGroup.check(difficulty);
         soundSwitch.setChecked(sound);
 
-        difficultyRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putInt("difficulty", checkedId);
-            editor.apply();
-        });
 
         soundSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferences.Editor editor = preferences.edit();

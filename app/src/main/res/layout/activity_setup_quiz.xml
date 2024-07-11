@@ -9,7 +9,7 @@
         android:id="@+id/editTextPlayerName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter your name"
+        android:hint="Introduceti numele!"
         android:inputType="text"
         android:minHeight="48dp"
         android:padding="12dp"/>

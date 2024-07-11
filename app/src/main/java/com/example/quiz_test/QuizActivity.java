@@ -1,5 +1,6 @@
 package com.example.quiz_test;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -26,7 +27,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class QuizActivity extends AppCompatActivity {
 
@@ -77,6 +80,33 @@ public class QuizActivity extends AppCompatActivity {
                 loadNextQuestion();
             }
         });
+    }
+    private void saveHighScore(String playerName, int score) {
+        SharedPreferences sharedPreferences = getSharedPreferences("HighScores", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String difficultyKey = difficulty.toLowerCase();
+
+        Set<String> scoresSet = sharedPreferences.getStringSet(difficultyKey, new HashSet<>());
+        List<String> scoresList = new ArrayList<>(scoresSet);
+        scoresList.add(playerName + ":" + score);
+
+        // Sort the list in descending order
+        scoresList.sort((a, b) -> {
+            int scoreA = Integer.parseInt(a.split(":")[1]);
+            int scoreB = Integer.parseInt(b.split(":")[1]);
+            return Integer.compare(scoreB, scoreA);
+        });
+
+        // Limit the list to the top 5 scores
+        if (scoresList.size() > 5) {
+            scoresList = scoresList.subList(0, 5);
+        }
+
+        // Convert back to set
+        Set<String> newScoresSet = new HashSet<>(scoresList);
+
+        editor.putStringSet(difficultyKey, newScoresSet);
+        editor.apply();
     }
 
     private List<Question> getQuestionsByDifficulty(String difficulty) {

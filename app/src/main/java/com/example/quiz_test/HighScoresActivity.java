@@ -1,91 +1,65 @@
 package com.example.quiz_test;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class HighScoresActivity extends AppCompatActivity {
 
-    private ListView easyHighScoresListView, mediumHighScoresListView, hardHighScoresListView;
-    private ArrayAdapter<String> easyScoresAdapter, mediumScoresAdapter, hardScoresAdapter;
-    private List<String> easyHighScores, mediumHighScores, hardHighScores;
-
-    private SharedPreferences sharedPreferences;
+    private TextView easyHighScoresTextView;
+    private TextView mediumHighScoresTextView;
+    private TextView hardHighScoresTextView;
+    private Button homeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_high_scores);
 
-        // Inițializăm listele pentru scoruri
-        easyHighScores = new ArrayList<>();
-        mediumHighScores = new ArrayList<>();
-        hardHighScores = new ArrayList<>();
+        easyHighScoresTextView = findViewById(R.id.easyHighScoresTextView);
+        mediumHighScoresTextView = findViewById(R.id.mediumHighScoresTextView);
+        hardHighScoresTextView = findViewById(R.id.hardHighScoresTextView);
+        homeButton = findViewById(R.id.homeButton);
 
-        // Inițializăm adapterele pentru listele de scoruri
-        easyScoresAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, easyHighScores);
-        mediumScoresAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mediumHighScores);
-        hardScoresAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, hardHighScores);
+        displayHighScores("easy", easyHighScoresTextView);
+        displayHighScores("medium", mediumHighScoresTextView);
+        displayHighScores("hard", hardHighScoresTextView);
 
-        // Inițializăm ListView-urile
-        easyHighScoresListView = findViewById(R.id.easyHighScoresListView);
-        mediumHighScoresListView = findViewById(R.id.mediumHighScoresListView);
-        hardHighScoresListView = findViewById(R.id.hardHighScoresListView);
-
-        // Setăm adapterele pentru ListView-urile corespunzătoare
-        easyHighScoresListView.setAdapter(easyScoresAdapter);
-        mediumHighScoresListView.setAdapter(mediumScoresAdapter);
-        hardHighScoresListView.setAdapter(hardScoresAdapter);
-
-        // Simulăm adăugarea automată a scorurilor după finalizarea testelor
-        // În aplicația reală, această logica va fi înlocuită cu cod care adaugă scorurile
-        // utilizatorilor după fiecare test completat.
-        addScore("easy", "Player 1", 100);
-        addScore("easy", "Player 2", 80);
-        addScore("medium", "Player 3", 120);
-        addScore("medium", "Player 4", 90);
-        addScore("hard", "Player 5", 150);
-        addScore("hard", "Player 6", 110);
+        homeButton.setOnClickListener(v -> finish());
     }
 
-    // Metodă pentru adăugarea scorului în funcție de nivelul de dificultate
-    private void addScore(String difficulty, String playerName, int score) {
-        switch (difficulty) {
-            case "easy":
-                easyHighScores.add(playerName + ": " + score);
-                Collections.sort(easyHighScores, new ScoreComparator());
-                easyScoresAdapter.notifyDataSetChanged();
-                break;
-            case "medium":
-                mediumHighScores.add(playerName + ": " + score);
-                Collections.sort(mediumHighScores, new ScoreComparator());
-                mediumScoresAdapter.notifyDataSetChanged();
-                break;
-            case "hard":
-                hardHighScores.add(playerName + ": " + score);
-                Collections.sort(hardHighScores, new ScoreComparator());
-                hardScoresAdapter.notifyDataSetChanged();
-                break;
-            default:
-                break;
-        }
-    }
+    private void displayHighScores(String difficulty, TextView textView) {
+        SharedPreferences sharedPreferences = getSharedPreferences("HighScores", Context.MODE_PRIVATE);
+        Set<String> scoresSet = sharedPreferences.getStringSet(difficulty, new HashSet<>());
 
-    // Comparator pentru sortarea scorurilor în ordine descrescătoare
-    class ScoreComparator implements Comparator<String> {
-        @Override
-        public int compare(String score1, String score2) {
-            int score1Value = Integer.parseInt(score1.split(": ")[1]);
-            int score2Value = Integer.parseInt(score2.split(": ")[1]);
-            return Integer.compare(score2Value, score1Value); // Sortare descrescătoare după scor
+        // Convert set to list and sort it
+        List<String> scoresList = new ArrayList<>(scoresSet);
+        scoresList.sort((a, b) -> {
+            int scoreA = Integer.parseInt(a.split(":")[1]);
+            int scoreB = Integer.parseInt(b.split(":")[1]);
+            return Integer.compare(scoreB, scoreA);
+        });
+
+        // Limit the list to the top 5 scores
+        if (scoresList.size() > 5) {
+            scoresList = scoresList.subList(0, 5);
         }
+
+        // Build the display text
+        StringBuilder displayText = new StringBuilder();
+        for (String score : scoresList) {
+            displayText.append(score).append("\n");
+        }
+
+        textView.setText(displayText.toString());
     }
 }
