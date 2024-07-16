@@ -161,6 +161,7 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
 
+
     private void endQuiz() {
         Intent intent = new Intent(QuizActivity.this, ResultsActivity.class);
         intent.putExtra("score", score);
