@@ -31,6 +31,19 @@ public class SetupQuizActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String playerName = editTextPlayerName.getText().toString();
                 int selectedDifficultyId = radioGroupDifficulty.getCheckedRadioButtonId();
+
+                if (playerName.isEmpty()) {
+                    Toast.makeText(SetupQuizActivity.this, "Please enter your name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (selectedDifficultyId == -1) {
+                    Toast.makeText(SetupQuizActivity.this, "Please select a difficulty level", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                RadioButton selectedDifficulty = findViewById(selectedDifficultyId);
+
                 String difficulty = "easy";  // default
 
                 if (selectedDifficultyId == R.id.radioButtonEasy) {

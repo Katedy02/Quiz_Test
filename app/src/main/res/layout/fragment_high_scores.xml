@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundscore"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textViewScores"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="High Scores"
+        android:textColor="@color/white"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/buttonGoToHomeScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go to Home Screen"
+        android:textStyle="bold"
+        android:background="?attr/selectableItemBackground"
+        android:backgroundTint="?attr/colorAccent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="-160dp"
+        android:padding="12dp"
+        android:textColor="@color/white" />
+</LinearLayout>

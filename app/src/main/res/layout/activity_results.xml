@@ -7,22 +7,36 @@
     android:padding="16dp">
 
     <TextView
+        android:id="@+id/messageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Congratulations!"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:layout_gravity="center_horizontal"
+        android:padding="16dp" />
+
+    <TextView
         android:id="@+id/scoreTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
+        android:text="Your Score: 0"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="400dp"
-        android:textColor="@color/black"/>
+        android:padding="16dp" />
 
     <Button
         android:id="@+id/replayButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:text="Replay Quiz"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="105dp"
-        android:textColor="@color/black"
+        android:background="?attr/selectableItemBackground"
+        android:backgroundTint="?attr/colorAccent"
+        android:textColor="@color/white"
         android:minWidth="48dp"
         android:minHeight="48dp"
         android:padding="12dp"/>
@@ -36,7 +50,10 @@
         android:minWidth="48dp"
         android:minHeight="48dp"
         android:padding="12dp"
+        android:background="?attr/selectableItemBackground"
+        android:backgroundTint="?attr/colorAccent"
         android:text="Go to Home Screen"
-        android:textColor="@color/black" />
+        android:textStyle="bold"
+        android:textColor="@color/white" />
 
 </LinearLayout>

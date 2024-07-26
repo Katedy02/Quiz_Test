@@ -13,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sound"
+        android:textStyle="bold"
         android:minWidth="48dp"
         android:minHeight="48dp"/>
 
@@ -25,5 +26,10 @@
         android:text="Go to Home Screen"
         android:layout_gravity="center_horizontal"
         android:onClick="goToHomeScreen"
+        android:background="?attr/selectableItemBackground"
+        android:backgroundTint="?attr/colorAccent"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_marginTop="550dp"
         tools:ignore="OnClick" />
 </LinearLayout>

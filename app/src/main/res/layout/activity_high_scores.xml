@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:text="High Scores - Easy"
         android:textColor="@color/white"
+        android:textStyle="bold"
         android:textSize="24sp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="16dp"/>
@@ -20,6 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
+        android:textStyle="italic"
         android:textSize="18sp"
         android:layout_marginBottom="32dp"/>
 
@@ -27,6 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="High Scores - Medium"
+        android:textStyle="bold"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:layout_gravity="center_horizontal"
@@ -37,6 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
+        android:textStyle="italic"
         android:textSize="18sp"
         android:layout_marginBottom="32dp"/>
 
@@ -44,6 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="High Scores - Hard"
+        android:textStyle="bold"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:layout_gravity="center_horizontal"
@@ -54,6 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
+        android:textStyle="italic"
         android:textSize="18sp"
         android:layout_marginBottom="32dp"/>
 
@@ -62,6 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Go to Home Screen"
+        android:textStyle="bold"
         android:layout_gravity="center_horizontal"
         android:textColor="@color/black"/>
 </LinearLayout>

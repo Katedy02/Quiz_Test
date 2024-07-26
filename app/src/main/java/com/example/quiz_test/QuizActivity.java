@@ -160,6 +160,51 @@ public class QuizActivity extends AppCompatActivity {
             }
         }
     }
+    public void submitAnswer() {
+        int selectedRadioButtonId = answersRadioGroup.getCheckedRadioButtonId();
+
+        if (selectedRadioButtonId == -1) {
+            // No answer selected
+            Toast.makeText(this, "Please select an answer", Toast.LENGTH_SHORT).show();
+        } else {
+            // Answer selected
+            RadioButton selectedRadioButton = findViewById(selectedRadioButtonId);
+            String selectedAnswer = selectedRadioButton.getText().toString();
+            Question currentQuestion = questionsList.get(currentQuestionIndex);
+
+            if (selectedAnswer.equals(currentQuestion.getCorrectAnswer())) {
+                score++;
+            }
+
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex < questionsList.size()) {
+                displayQuestion();
+            } else {
+                // Quiz finished
+                Intent intent = new Intent(QuizActivity.this, ResultsActivity.class);
+                intent.putExtra("score", score);
+                intent.putExtra("playerName", playerName);
+                intent.putExtra("difficulty", difficulty);
+                startActivity(intent);
+                finish();
+            }
+        }
+    }
+
+    public void displayQuestion() {
+        if (currentQuestionIndex < questionsList.size()) {
+            Question currentQuestion = questionsList.get(currentQuestionIndex);
+            questionTextView.setText(currentQuestion.getQuestion());
+            List<String> answers = Arrays.asList(currentQuestion.getAnswers());
+            Collections.shuffle(answers); // Shuffle answers to randomize their order
+            ((RadioButton) answersRadioGroup.getChildAt(0)).setText(answers.get(0));
+            ((RadioButton) answersRadioGroup.getChildAt(1)).setText(answers.get(1));
+            ((RadioButton) answersRadioGroup.getChildAt(2)).setText(answers.get(2));
+            ((RadioButton) answersRadioGroup.getChildAt(3)).setText(answers.get(3));
+            progressTextView.setText("Question " + (currentQuestionIndex + 1) + " of " + questionsList.size());
+        }
+    }
 
 
     private void endQuiz() {
