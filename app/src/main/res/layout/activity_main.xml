@@ -9,6 +9,7 @@
     android:background="@drawable/background"
     tools:context=".MainActivity">
 
+
     <Button
         android:id="@+id/startQuizButton"
         android:layout_width="wrap_content"
@@ -20,6 +21,7 @@
         android:backgroundTint="?attr/colorAccent"
         android:textStyle="bold"
         android:textColor="@color/white" />
+
 
     <Button
         android:id="@+id/viewHighScoresButton"
@@ -33,13 +35,15 @@
         android:textStyle="bold"
         android:textColor="@color/white"/>
 
-    <Button
-        android:id="@+id/settingsButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/settingsbutton"
-        android:layout_marginStart="150dp"
+    <Switch
+        android:id="@+id/soundSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
         android:layout_marginTop="-560dp"
-        android:contentDescription="Settings"/>
+        android:textSize="18sp"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:text="Sound" />
 
 </LinearLayout>

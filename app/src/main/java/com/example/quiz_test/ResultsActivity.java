@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ResultsActivity extends AppCompatActivity {
 
     private static final String PREFS_NAME = "HighScoresPrefs";
+    private static final String SETTINGS_PREFS_NAME = "SettingsPrefs";
+    private static final String SOUND_ENABLED_KEY = "soundEnabled";
+
     private TextView scoreTextView;
     private TextView messageTextView;
     private Button replayButton;
@@ -21,6 +23,7 @@ public class ResultsActivity extends AppCompatActivity {
     private String playerName;
     private String difficulty;
     private int score;
+    private boolean isSoundEnabled;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +43,14 @@ public class ResultsActivity extends AppCompatActivity {
 
         scoreTextView.setText("Congratulations " + playerName + "! Your score is: " + score);
 
-        // Dacă scorul este peste 80, redă sunetul
+        // Load sound setting
+        SharedPreferences prefs = getSharedPreferences(SETTINGS_PREFS_NAME, Context.MODE_PRIVATE);
+        isSoundEnabled = prefs.getBoolean(SOUND_ENABLED_KEY, true);
+
         if (score > 80) {
-            playSuccessSound();
+            if (isSoundEnabled) {
+                playSuccessSound();
+            }
             messageTextView.setText("Congratulations, " + playerName + "!");
         } else {
             messageTextView.setText("Good try, " + playerName + "!");
@@ -64,12 +72,14 @@ public class ResultsActivity extends AppCompatActivity {
     }
 
     private void playSuccessSound() {
-        mediaPlayer = MediaPlayer.create(this, R.raw.success_sound);
-        mediaPlayer.start();
-        mediaPlayer.setOnCompletionListener(mp -> {
-            mp.release();
-            mediaPlayer = null;
-        });
+        if (isSoundEnabled) {
+            mediaPlayer = MediaPlayer.create(this, R.raw.success_sound);
+            mediaPlayer.start();
+            mediaPlayer.setOnCompletionListener(mp -> {
+                mp.release();
+                mediaPlayer = null;
+            });
+        }
     }
 
     private void saveHighScore(String playerName, int score, String difficulty) {
@@ -81,7 +91,6 @@ public class ResultsActivity extends AppCompatActivity {
         String newScore = playerName + ":" + score;
         String updatedScores = existingScores.isEmpty() ? newScore : existingScores + "\n" + newScore;
 
-        // Save updated scores
         editor.putString(key, updatedScores);
         editor.apply();
     }
