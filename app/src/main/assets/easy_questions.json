@@ -5,8 +5,8 @@
     "correctAnswer": 0
   },
   {
-    "question": "Cât este 2 + 2?",
-    "answers": ["3", "4", "5", "6"],
+    "question": "Ce planetă este cunoscută ca 'planeta roșie'?",
+    "answers": ["Neptun", "Marte", "Jupiter", "Venus"],
     "correctAnswer": 1
   },
   {

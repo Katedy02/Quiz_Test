@@ -12,7 +12,7 @@
   {
     "question": "Cine a inventat telefonul?",
     "answers": ["Alexander Graham Bell", "Thomas Edison", "Nikola Tesla", "Guglielmo Marconi"],
-    "correctAnswer": 0
+    "correctAnswer": 2
   },
   {
     "question": "Câte state are SUA?",
@@ -27,7 +27,7 @@
   {
     "question": "Cine a scris 'Odiseea'?",
     "answers": ["Homer", "Vergiliu", "Ovidiu", "Sofocle"],
-    "correctAnswer": 0
+    "correctAnswer": 1
   },
   {
     "question": "Ce este botulismul?",
@@ -37,7 +37,7 @@
   {
     "question": "Care este cea mai mare insulă din lume?",
     "answers": ["Groenlanda", "Madagascar", "Australia", "Islanda"],
-    "correctAnswer": 0
+    "correctAnswer": 3
   },
   {
     "question": "Cine a inventat becul electric?",
@@ -47,6 +47,6 @@
   {
     "question": "Ce gaz este esențial pentru respirație?",
     "answers": ["Oxigen", "Azot", "Dioxid de carbon", "Hidrogen"],
-    "correctAnswer": 0
+    "correctAnswer": 1
   }
 ]
