@@ -50,14 +50,10 @@ public class HighScoresFragment extends Fragment {
 
     private String getDifficultyFromPosition(int position) {
         switch (position) {
-            case 0:
-                return "easy";
-            case 1:
-                return "medium";
-            case 2:
-                return "hard";
-            default:
-                return "";
+            case 0: return "easy";
+            case 1: return "medium";
+            case 2: return "hard";
+            default: return "";
         }
     }
 

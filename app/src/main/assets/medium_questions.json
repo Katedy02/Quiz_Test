@@ -1,8 +1,8 @@
 [
   {
     "question": "Cine a descoperit America?",
-    "answers": ["Christopher Columbus", "Marco Polo", "Ferdinand Magellan", "James Cook"],
-    "correctAnswer": 0
+    "answers": ["Marco Polo", "Christopher Columbus", "Ferdinand Magellan", "James Cook"],
+    "correctAnswer": 1
   },
   {
     "question": "Care este cel mai mare mamifer terestru?",
@@ -11,7 +11,7 @@
   },
   {
     "question": "Cine a inventat telefonul?",
-    "answers": ["Alexander Graham Bell", "Thomas Edison", "Nikola Tesla", "Guglielmo Marconi"],
+    "answers": ["Nikola Tesla", "Thomas Edison", "Alexander Graham Bell", "Guglielmo Marconi"],
     "correctAnswer": 2
   },
   {
@@ -21,12 +21,12 @@
   },
   {
     "question": "Care este formula chimică a apei?",
-    "answers": ["H2O", "CO2", "O2", "N2"],
-    "correctAnswer": 0
+    "answers": ["N2", "CO2", "O2", "H2O"],
+    "correctAnswer": 3
   },
   {
     "question": "Cine a scris 'Odiseea'?",
-    "answers": ["Homer", "Vergiliu", "Ovidiu", "Sofocle"],
+    "answers": ["Vergiliu", "Homer", "Ovidiu", "Sofocle"],
     "correctAnswer": 1
   },
   {
@@ -36,7 +36,7 @@
   },
   {
     "question": "Care este cea mai mare insulă din lume?",
-    "answers": ["Groenlanda", "Madagascar", "Australia", "Islanda"],
+    "answers": ["Australia", "Madagascar", "Groenlanda", "Islanda"],
     "correctAnswer": 3
   },
   {
@@ -46,7 +46,7 @@
   },
   {
     "question": "Ce gaz este esențial pentru respirație?",
-    "answers": ["Oxigen", "Azot", "Dioxid de carbon", "Hidrogen"],
+    "answers": ["Azot", "Oxigen", "Dioxid de carbon", "Hidrogen"],
     "correctAnswer": 1
   }
 ]

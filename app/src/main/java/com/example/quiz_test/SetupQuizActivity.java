@@ -44,7 +44,7 @@ public class SetupQuizActivity extends AppCompatActivity {
 
                 RadioButton selectedDifficulty = findViewById(selectedDifficultyId);
 
-                String difficulty = "easy";  // default
+                String difficulty = "easy";
 
                 if (selectedDifficultyId == R.id.radioButtonEasy) {
                     difficulty = "easy";

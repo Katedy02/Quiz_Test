@@ -19,20 +19,15 @@ public class HighScoresPagerAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        // Return the number of tabs
-        return 3; // Exemplu: 3 taburi pentru Easy, Medium, și Hard
+        return 3;
     }
 
     public CharSequence getPageTitle(int position) {
         switch (position) {
-            case 0:
-                return "Easy";
-            case 1:
-                return "Medium";
-            case 2:
-                return "Hard";
-            default:
-                return null;
+            case 0: return "Easy";
+            case 1: return "Medium";
+            case 2: return "Hard";
+            default: return null;
         }
     }
 }

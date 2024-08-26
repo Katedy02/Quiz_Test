@@ -6,17 +6,17 @@
   },
   {
     "question": "Ce este de Broglie?",
-    "answers": ["Un fizician francez", "O specie de fluture", "Un tip de mineral", "O constelație"],
+    "answers": ["O specie de fluture", "Un fizician francez", "Un tip de mineral", "O constelație"],
     "correctAnswer": 1
   },
   {
     "question": "Care este capitala Mongoliei?",
-    "answers": ["Ulaanbaatar", "Astana", "Tbilisi", "Baku"],
+    "answers": ["Tbilisi", "Astana", "Ulaanbaatar", "Baku"],
     "correctAnswer": 2
   },
   {
     "question": "Cine a scris 'Divina Comedie'?",
-    "answers": ["Dante Alighieri", "Geoffrey Chaucer", "John Milton", "Homer"],
+    "answers": ["Homer", "Geoffrey Chaucer", "John Milton", "Dante Alighieri"],
     "correctAnswer": 3
   },
   {
@@ -26,17 +26,17 @@
   },
   {
     "question": "Câte cromozomi are un om?",
-    "answers": ["46", "23", "44", "48"],
+    "answers": ["23", "46", "44", "48"],
     "correctAnswer": 1
   },
   {
     "question": "Ce este Antares?",
-    "answers": ["O stea", "O galaxie", "O planetă", "Un asteroid"],
+    "answers": ["O planetă", "O galaxie", "O stea", "Un asteroid"],
     "correctAnswer": 2
   },
   {
     "question": "Cine a pictat 'Noaptea înstelată'?",
-    "answers": ["Vincent van Gogh", "Pablo Picasso", "Claude Monet", "Salvador Dalí"],
+    "answers": ["Salvador Dalí", "Pablo Picasso", "Claude Monet", "Vincent van Gogh"],
     "correctAnswer": 3
   },
   {
